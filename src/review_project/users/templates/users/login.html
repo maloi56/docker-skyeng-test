@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'users/css/login.css' %}" rel="stylesheet">
+{% endblock css %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% if messages or form.non_field_errors %}
+            <div class="alert
+                        {% if messages %} alert-success {% else %} alert-warning {% endif %}
+                         alert-dismissible fade show" role="alert"
+                 style="margin-top: 50px;">
+                {% if messages %}
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                {% else %}
+                {{ form.non_field_errors }}
+                {% endif %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header">
+                    <h3 class="text-center font-weight-light my-4">Авторизация</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'users:login' %}" method='POST'>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="small mb-1" for="{{ form.email.auto_id }}">Email</label>
+                            {{ form.username }}
+                            <label class="small mb-1" for="{{ form.password.auto_id}}">Пароль</label>
+                            {{ form.password }}
+                        </div>
+                        <div class="form-group d-grid gap-2 mt-3">
+                            <input class="btn btn-primary" type="submit" value="Авторизоваться">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="small"><a href="{% url 'users:registration' %}">Нужен аккаунт? Зарегистрируйся!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

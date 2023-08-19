@@ -1,0 +1,8 @@
+[flake8]
+
+exclude =
+    migrations,
+    tests.py,
+    media
+
+max-line-length = 120

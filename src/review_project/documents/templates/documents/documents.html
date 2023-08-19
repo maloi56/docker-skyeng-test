@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load paginator %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+            {% if messages or form.non_field_errors %}
+            <div class="alert
+              {% if messages %}
+                {% for message in messages %}
+                  {% if 'success' in message.tags %}
+                    alert-success
+                  {% else %}
+                    alert-warning
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                alert-warning
+              {% endif %}
+              alert-dismissible fade show" role="alert"
+                 style="margin-top: 50px;">
+
+                {% if messages %}
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                {% else %}
+                {{ form.non_field_errors }}
+                {% endif %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row mt-3">
+        {% for document in documents %}
+        <div class="col-lg-3 col-md-6 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-truncate">{{ document.filename }}</h5>
+                    <p class="card-text">Дата изменения: {{ document.updated }}</p>
+                    <p class="card-text">Статус: {% if document.status != document.REVIEWED%}ожидает проверки{%else%}проверен{%endif%}</p>
+                    <a href="{% url 'documents:document' document.pk %}" class="btn btn-primary w-100 stretched-link">Перейти</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% if is_paginated %}
+        {% get_proper_elided_page_range paginator page_obj.number as page_range %}
+        <div class="mt-5">
+            <ul class="pagination d-flex justify-content-center">
+                {% for page in page_range %}
+                {% if page != paginator.ELLIPSIS %}
+                {% if page != page_obj.number %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'documents:documents' page %}">{{ page }}</a>
+                </li>
+                {% else %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link">{{page}}</a>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="page-item">
+                    <span class="page-link">{{ paginator.ELLIPSIS }}</span>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

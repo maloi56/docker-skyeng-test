@@ -1,0 +1,31 @@
+.verification-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 50px 20px;
+    }
+
+    .verification-icon {
+        font-size: 48px;
+        color: #28a745;
+    }
+
+    .verification-heading {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .verification-message {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .verification-button {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+        text-align: center;
+    }

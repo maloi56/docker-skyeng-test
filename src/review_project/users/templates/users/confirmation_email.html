@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .email-confirmation {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="email-confirmation">
+    <h2>Подтверждение учетной записи CodeReview</h2>
+    <p>Для подтверждения учетной записи, связанной с электронной почтой <strong>{{ user_email }}</strong>, пожалуйста,
+        перейдите по ссылке ниже:</p>
+    <a class="btn btn-primary" href="https://{{ verification_link }}" class="btn btn-primary">Подтвердить Email</a>
+</div>
+</body>
+</html>

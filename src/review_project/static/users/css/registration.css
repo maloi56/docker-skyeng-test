@@ -1,0 +1,15 @@
+ @media (min-width: 992px) {
+        .card {
+            width: 80%;
+            margin: 0 auto;
+        }
+    }
+
+    .form-group:not(:last-child) {
+        margin-bottom: 5px;
+    }
+
+    .form-group label,
+    .form-group input {
+        margin-bottom: 5px;
+    }
